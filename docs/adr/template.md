@@ -1,10 +1,32 @@
+---
+# このテンプレートの案内コメントは、成果物では削除する。
+# ステータス。proposed / accepted / rejected / deprecated / superseded のいずれか。
+# 新規作成時は proposed とする (合意済みの決定でも、合意の記録は proposed からの遷移で行う)。
+status: proposed
+
+# 決定日 (YYYY-MM-DD)。起票時は起票日を書き、accepted / rejected へ遷移させた日で更新する。
+date: YYYY-MM-DD
+
+# この ADR が置き換える ADR の ID (数値の配列)。無いなら削除する。
+supersedes: []
+
+# この ADR を置き換えた ADR の ID (数値の配列)。相手側の status を superseded にするときに相互に設定する。無いなら削除する。
+superseded-by: []
+
+# 関連する ADR の ID (数値の配列)。本文で参照した ADR はここにも宣言する。参照が無いなら削除する。
+refs: []
+
+# 関連する語のタグ。不要なら削除する。
+tags: []
+---
+
 <!--
 ADR (Architecture Decision Record) のテンプレート。
 
 使い方:
 - このファイルを docs/adr/NNNN-<短い要約>.md にコピーして書く。NNNN は 4 桁ゼロ埋めの連番。欠番は再利用しない。
 - 本文は日本語で、通常の文書体で書く。
-- HTML コメント (この案内を含む) は、書き終えたらすべて削除する。
+- 案内コメント (frontmatter 内の # 行と、この HTML コメントを含む) は、書き終えたらすべて削除する。
 
 ADR にするものの閾値 (いずれかに当たるもの):
 - 層の境界・データモデル・外部依存 (合成エンジン・フレームワーク・ライセンス) に触れる決定
@@ -12,18 +34,13 @@ ADR にするものの閾値 (いずれかに当たるもの):
 - 「やらない」と決めたこと (スコープの切り捨て)
 命名規約やフォーマッタ設定など、変えても影響が局所的なものは ADR にしない。
 
-Status の遷移: proposed -> accepted -> deprecated | superseded
+status の遷移: proposed -> accepted | rejected、accepted -> deprecated | superseded
 - accepted にした後は、本文 (Context / Decision / Consequences 等) を書き換えない。
-  決定を覆すときは新しい ADR を書き、両者の Supersedes / Superseded-by を相互に更新する。
+  決定を覆すときは新しい ADR を書き、新側の supersedes と旧側の superseded-by を相互に更新する。
 - Assumptions の「状態」列は例外で、検証が進んだら更新してよい (事実の追記であり、決定の変更ではない)。
 -->
 
 # ADR-NNNN: <決定の要約。「〜する」「〜しない」の形で 1 行>
-
-- Status: proposed
-- Date: YYYY-MM-DD
-- Supersedes: —
-- Superseded-by: —
 
 ## Context
 
